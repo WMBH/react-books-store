@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import { setBooks, setIsReady } from './reducers/books-reducer';
 import { connect } from 'react-redux';
-import { Container } from 'semantic-ui-react';
+import { Container, Card } from 'semantic-ui-react';
 import * as axios from 'axios';
 import MenuComponent from './components/Menu';
+import BookItem from './components/BookItem';
+import './App.css';
 
 function App(props) {
 	const { books } = props;
@@ -21,17 +23,9 @@ function App(props) {
 	return (
 		<Container className="App">
 			<MenuComponent />
-			<ul>
-				{!isReady ? (
-					'Загрузка...'
-				) : (
-					books.map((book) => (
-						<li>
-							<b>{book.title}</b> - {book.author}
-						</li>
-					))
-				)}
-			</ul>
+			<Card.Group itemsPerRow={5}>
+				{!isReady ? 'Загрузка...' : books.map((book, idx) => <BookItem {...book} key={idx} />)}
+			</Card.Group>
 		</Container>
 	);
 }
