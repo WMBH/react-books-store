@@ -1,26 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import { setBooks, setIsReady } from './reducers/books-reducer';
+import { connect } from 'react-redux';
+import { Container } from 'semantic-ui-react';
+import * as axios from 'axios';
+import MenuComponent from './components/Menu';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App(props) {
+	const { books } = props;
+	const { setBooks, isReady, setIsReady } = props;
+
+	useEffect(
+		() => {
+			axios.get('/books.json').then(({ data }) => {
+				setBooks(data);
+				setIsReady(true);
+			});
+		},
+		[ books, isReady, setBooks, setIsReady ]
+	);
+	return (
+		<Container className="App">
+			<MenuComponent />
+			<ul>
+				{!isReady ? (
+					'Загрузка...'
+				) : (
+					books.map((book) => (
+						<li>
+							<b>{book.title}</b> - {book.author}
+						</li>
+					))
+				)}
+			</ul>
+		</Container>
+	);
 }
 
-export default App;
+const mapStateToProps = (state) => {
+	return {
+		books: state.books.items,
+		isReady: state.books.isReady
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		setBooks: (books) => dispatch(setBooks(books)),
+		setIsReady: (boolean) => dispatch(setIsReady(boolean))
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
