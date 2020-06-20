@@ -2,13 +2,13 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import booksReducer from './reducers/books-reducer';
 import cartReducer from './reducers/cart-reducer';
 import thunkMiddleware from 'redux-thunk';
-// import logger from 'redux-logger';
+import logger from 'redux-logger';
 
 let reducers = combineReducers({
 	books: booksReducer,
 	cart: cartReducer
 });
 
-let store = createStore(reducers, applyMiddleware(thunkMiddleware));
+let store = createStore(reducers, applyMiddleware(logger));
 
 export default store;

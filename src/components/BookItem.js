@@ -12,10 +12,8 @@ const BookItem = ({ title, image, author, price }) => {
 				</Card.Meta>
 			</Card.Content>
 			<Card.Content extra>
-				<a href="">
-					<Icon name="rub" />
-					{price}
-				</a>
+				<Icon name="rub" />
+				{price}
 			</Card.Content>
 		</Card>
 	);
