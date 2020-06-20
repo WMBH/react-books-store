@@ -1,11 +1,12 @@
-Рабочий пример интернет-магазина 
+Рабочий пример интернет-магазина
 
-Stack:
 
-ReactJS
-Redux
-Redux Thunk
-React Logger
-Axios
-Lodash
-Semantic UI (React)
+**Stack:**
+
+* ReactJS
+* Redux
+* Redux Thunk
+* React Logger
+* Axios
+* Lodash
+* Semantic UI (React)
