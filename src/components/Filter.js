@@ -2,12 +2,18 @@ import React, { useState } from 'react';
 import { Input, Menu } from 'semantic-ui-react';
 
 const Filter = (props) => {
+	const { searchQuery, setQuery } = props;
+
 	const [ activeItem, setActiveItem ] = useState('home');
 
 	let handleItemClick = (e, { name }) => {
 		const { setFilter } = props;
 		setActiveItem(name);
 		setFilter(name);
+	};
+
+	let handleFieldChange = (e) => {
+		setQuery(e.target.value);
 	};
 
 	return (
@@ -21,9 +27,8 @@ const Filter = (props) => {
 
 			<Menu.Menu position="right">
 				<Menu.Item>
-					<Input icon="search" placeholder="Search..." />
+					<Input icon="search" placeholder="Search..." value={searchQuery} onChange={handleFieldChange} />
 				</Menu.Item>
-				<Menu.Item name="logout" active={activeItem === 'logout'} onClick={handleItemClick} />
 			</Menu.Menu>
 		</Menu>
 	);
