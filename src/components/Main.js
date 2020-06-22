@@ -6,8 +6,7 @@ import BookItem from './BookItem';
 import Filter from './Filter';
 
 function Main(props) {
-	const { books } = props;
-	const { setBooks, isReady, setIsReady } = props;
+	const { books, setBooks, isReady, setIsReady } = props;
 
 	useEffect(() => {
 		axios.get('/books.json').then(({ data }) => {

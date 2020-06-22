@@ -6,13 +6,13 @@ const Filter = (props) => {
 
 	const [ activeItem, setActiveItem ] = useState('home');
 
-	let handleItemClick = (e, { name }) => {
+	const handleItemClick = (e, { name }) => {
 		const { setFilter } = props;
 		setActiveItem(name);
 		setFilter(name);
 	};
 
-	let handleFieldChange = (e) => {
+	const handleFieldChange = (e) => {
 		setQuery(e.target.value);
 	};
 
