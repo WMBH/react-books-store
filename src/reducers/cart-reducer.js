@@ -2,7 +2,7 @@ const ADD_BOOK = 'ADD_BOOK';
 const REMOVE_BOOK = 'REMOVE_BOOK';
 
 const initialState = {
-	items: null
+	items: []
 };
 
 const cartReducer = (state = initialState, action) => {
@@ -22,7 +22,7 @@ const cartReducer = (state = initialState, action) => {
 	}
 };
 
-export const addBook = (id) => ({ type: ADD_BOOK, payload: id });
+export const addBook = (obj) => ({ type: ADD_BOOK, payload: obj });
 export const removeBook = (id) => ({ type: REMOVE_BOOK, payload: id });
 
 export default cartReducer;

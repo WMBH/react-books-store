@@ -1,4 +1,3 @@
-import React from 'react';
 import { setBooks, setIsReady } from '../reducers/books-reducer';
 import { setFilter, setSearchQuery } from '../reducers/filter-reducer';
 import { connect } from 'react-redux';
