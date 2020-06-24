@@ -6,20 +6,19 @@ const Cart = ({ title, id, image, removeBook }) => {
 	const removeBookFromCart = () => {
 		removeBook(id);
 	};
+
 	return (
-		<div>
-			<List selection divided verticalAlign="middle">
-				<List.Item>
-					<List.Content floated="right">
-						<Button onClick={removeBookFromCart} color="red">
-							Remove
-						</Button>
-					</List.Content>
-					<Image avatar src={image} />
-					<List.Content>{title}</List.Content>
-				</List.Item>
-			</List>
-		</div>
+		<List selection divided verticalAlign="middle">
+			<List.Item>
+				<List.Content floated="right">
+					<Button onClick={removeBookFromCart} color="red">
+						Удалить
+					</Button>
+				</List.Content>
+				<Image avatar src={image} />
+				<List.Content>{title}</List.Content>
+			</List.Item>
+		</List>
 	);
 };
 
@@ -31,7 +30,7 @@ const MenuComponent = ({ totalPrice, amount, items }) => {
 				<Menu.Item name="total">{`Total: ${totalPrice} руб`}</Menu.Item>
 			</Menu.Menu>
 			<Popup
-				content={items.map((i) => <Cart {...i} />)}
+				content={items.length > 0 ? items.map((i) => <Cart key={i.id} {...i} />) : <h4>No items added</h4>}
 				hideOnScroll
 				on="click"
 				trigger={<Menu.Item name="amount">{`Cart: (${amount})`}</Menu.Item>}
